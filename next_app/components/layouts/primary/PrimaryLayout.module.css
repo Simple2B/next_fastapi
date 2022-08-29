@@ -4,6 +4,7 @@
   height: calc(100vh);
   overflow-y: auto;
   background-color: white;
+  margin: 60px 0;
 }
 
 .main > section {

@@ -4,7 +4,7 @@
 
 .main {
   min-height: 98vh;
-  margin: 100px auto;
+  /* margin: 100px auto; */
   padding: 4rem 0;
   flex: 1;
   display: flex;

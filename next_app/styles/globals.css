@@ -42,6 +42,11 @@ html {
   --asm-color-text: #343a40;
   --asm-color-secondary-text: #fff;
   --asm-color-social: #fff;
+  /* success page */
+  --success-card-container: #ebf0f5;
+  --success-card-text: #88b04b;
+  --success-card-message: #404f5e;
+  --success-card-background: white;
 }
 
 *,
@@ -112,4 +117,8 @@ img {
   bottom: 0;
   z-index: 100;
   background-color: var(--color-light);
+}
+
+.modalContainer {
+  height: 100%;
 }

@@ -2,19 +2,23 @@ from fastapi import HTTPException, Depends, APIRouter
 from app import model, schema, oauth2
 from app.database import get_db
 from sqlalchemy.orm import Session
+from app.services import UserService
 
 router = APIRouter(prefix="/backend/user", tags=["Users"])
 
 
-@router.post("/", status_code=201, response_model=schema.UserOut)
-def create_user(user: schema.UserCreate, db: Session = Depends(get_db)):
+@router.post("/registration", status_code=201, response_model=schema.UserOut)
+def create_user(data_user: schema.UserCreate, db: Session = Depends(get_db)):
+    user = db.query(model.User).filter(model.User.email == data_user.email).first()
+    user_service = UserService()
+    if not user:
+        new_user = model.User(**data_user.dict())
+        db.add(new_user)
+        db.commit()
+        db.refresh(new_user)
+        return user_service.user_registration(new_user, "new user registered")
 
-    new_user = model.User(**user.dict())
-    db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
-
-    return new_user
+    return user_service.user_registration(user, "user is already registered")
 
 
 @router.get("/{id}", response_model=schema.UserOut)
