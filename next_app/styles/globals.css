@@ -47,6 +47,8 @@ html {
   --success-card-text: #88b04b;
   --success-card-message: #404f5e;
   --success-card-background: white;
+  /* opacity background */
+  --loader-container-background: rgba(29, 54, 86, 0.3);
 }
 
 *,

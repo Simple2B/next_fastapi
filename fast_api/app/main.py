@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.router import user, auth
 from .config import settings
 
+
 app = FastAPI(
     title=settings.SERVER_NAME,
     docs_url="/backend/docs",

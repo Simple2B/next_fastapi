@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/react';
 import { useRouter } from 'next/router';
-import styles from '../RegisterLogin.module.css';
+import styles from './IconCross.module.css';
 
 export interface IIconCross {}
 

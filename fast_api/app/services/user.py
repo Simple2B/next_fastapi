@@ -1,5 +1,4 @@
-from fastapi import HTTPException, status
-from app import model, schema
+from app import schema
 
 
 class UserService:

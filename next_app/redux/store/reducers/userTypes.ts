@@ -12,3 +12,19 @@ export interface IUserState {
   isLoading: boolean;
   error: string;
 }
+
+export interface IUserLogin {
+  username: string;
+  password: string;
+}
+
+export interface IUserLoginState {
+  user: IUserToken;
+  isLoading: boolean;
+  error: string;
+}
+
+export interface IUserToken {
+  access_token: string;
+  token_type: string;
+}

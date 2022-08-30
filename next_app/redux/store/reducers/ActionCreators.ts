@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { userApi } from 'pages/api/backend_fastapi/userInstanse';
 // import { AppDispatch } from '../store';
 // import { userSlice } from './userSlice';
-import { IReqInfoUser } from './userTypes';
+import { IReqInfoUser, IUserLogin } from './userTypes';
 
 // the first method of implementation
 
@@ -29,6 +29,22 @@ export const registrationUser = createAsyncThunk(
       return thunkAPI.rejectWithValue(
         'Error! the user could not be registered '
       );
+    }
+  }
+);
+
+export const userLogin = createAsyncThunk(
+  '/login',
+  async (loginInfo: IUserLogin, thunkAPI) => {
+    try {
+      const username = loginInfo.username;
+      const password = loginInfo.password;
+      console.log('loginInfo: IUserLogin ', loginInfo);
+
+      const data = await userApi.login(username, password);
+      return data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue('Error! the user could not be log in ');
     }
   }
 );

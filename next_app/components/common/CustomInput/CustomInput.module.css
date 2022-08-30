@@ -1,0 +1,36 @@
+.asmForm__input {
+  width: 100%;
+  padding: 0.75rem 3rem;
+  font-family: inherit;
+  font-size: 1.25em;
+  color: inherit;
+  background-color: inherit;
+  border: 1px solid var(--asm-color-input-border);
+  border-radius: 0.3rem;
+  -webkit-box-shadow: var(--input-box-shadow);
+  box-shadow: var(--input-box-shadow);
+}
+
+.asmForm__input::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.asmForm__input:-ms-input-placeholder {
+  color: transparent;
+}
+
+.asmForm__input::-ms-input-placeholder {
+  color: transparent;
+}
+
+.asmForm__input::placeholder {
+  color: transparent;
+}
+
+.asmForm__input:active,
+.asmForm__input:focus,
+.asmForm__input:hover {
+  outline: none;
+  -webkit-box-shadow: inset 0 0 4px var(--asm-color-sidenav-item);
+  box-shadow: inset 0 0 4px var(--asm-color-sidenav-item);
+}

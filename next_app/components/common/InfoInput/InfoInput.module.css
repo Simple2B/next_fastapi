@@ -1,0 +1,18 @@
+.infoInput {
+  position: absolute;
+  top: -16px;
+  left: 1rem;
+  color: var(--asm-color-google);
+}
+
+.errorInfo {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1500;
+  background-color: var(--asm-color-secondary);
+  color: var(--asm-color-google);
+}

@@ -12,13 +12,13 @@ router = APIRouter(prefix="/backend", tags=["Authentication"])
 
 @router.post("/login", response_model=Token)
 def login(
-    user_credentials: OAuth2PasswordRequestForm = Depends(),
+    data: OAuth2PasswordRequestForm = Depends(),
     db: Session = Depends(get_db),
 ):
     user: User = User.authenticate(
         db,
-        user_credentials.username,
-        user_credentials.password,
+        data.username,
+        data.password,
     )
 
     if not user:

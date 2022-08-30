@@ -96,7 +96,14 @@ const SidebarLayout: React.FC<ISidebarLayout> = () => {
             <li className={styles.menuItem} onClick={closeBurgerMenu}>
               <Link href={'/user/login'}>
                 <a className={styles.menuLogin}>
-                  <Icon icon="ri:login-circle-line" />
+                  <Icon
+                    className={styles.iconSize}
+                    icon="ri:login-circle-line"
+                  />
+                  {/* <Icon
+                    className={styles.iconSize}
+                    icon="ri:account-circle-line"
+                  /> */}
                 </a>
               </Link>
             </li>
@@ -116,7 +123,7 @@ const SidebarLayout: React.FC<ISidebarLayout> = () => {
               : `${styles.searchBlock}`
           }
         >
-          <form className={styles.searchForm}>
+          <div className={styles.searchForm}>
             <span>
               <Icon
                 icon={arrowBack}
@@ -130,7 +137,7 @@ const SidebarLayout: React.FC<ISidebarLayout> = () => {
               className={styles.searchInput}
               placeholder="Search here..."
             />
-          </form>
+          </div>
         </div>
       </nav>
     </header>

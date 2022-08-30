@@ -93,6 +93,10 @@
   color: var(--color-blue-100);
 }
 
+.iconSize {
+  font-size: 1.6rem;
+}
+
 /* Media Query Breakpoint */
 @media only screen and (min-width: 48rem) {
   .menu {
