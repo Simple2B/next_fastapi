@@ -12,6 +12,7 @@
     "noqa",
     "pydantic",
     "pytest",
+    "redoc",
     "skipif",
     "sqlalchemy",
     "starlette",
@@ -19,7 +20,5 @@
     "viewonly"
   ],
   "python.testing.unittestEnabled": false,
-  "python.testing.nosetestsEnabled": false,
   "python.testing.pytestEnabled": true,
-  "pythonTestExplorer.testFramework": "pytest"
 }

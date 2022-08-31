@@ -13,6 +13,7 @@ from app.database import Base, get_db
 def client() -> Generator:
 
     with TestClient(app) as c:
+        c.app = app
         yield c
 
 
