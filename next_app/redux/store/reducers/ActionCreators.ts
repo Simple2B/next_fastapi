@@ -19,10 +19,13 @@ import { IReqInfoUser, IUserLogin } from './userTypes';
 
 // the second method of implementation
 
+// TODO: it is for async query ! must be add later! registrationUser must be  add to the extraReducer
 export const registrationUser = createAsyncThunk(
   'user/registration',
   async (reqUserInfo: IReqInfoUser, thunkAPI) => {
     try {
+      console.log('ACTIONCREATOR: reqUserInfo ', reqUserInfo);
+
       const data = await userApi.registrationUser(reqUserInfo);
       return data;
     } catch (e) {

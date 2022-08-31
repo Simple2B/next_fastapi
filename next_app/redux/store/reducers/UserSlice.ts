@@ -63,4 +63,5 @@ export const userSlice = createSlice({
   },
 });
 
-export default userSlice.reducer;
+export const userRegistrationReducer = userSlice.reducer;
+export const userRegistrationAction = userSlice.actions;

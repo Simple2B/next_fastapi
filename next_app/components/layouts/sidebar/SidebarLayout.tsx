@@ -3,6 +3,7 @@ import searchIcon from '@iconify/icons-bx/search';
 import { Icon } from '@iconify/react';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useTypedSelector } from 'redux/hooks/useTypedSelector';
 import styles from './SidebarLayout.module.css';
 
 export interface ISidebarLayout {}
@@ -41,6 +42,10 @@ const SidebarLayout: React.FC<ISidebarLayout> = () => {
   const toggleBurgerMenu = () => {
     setIsActive(!isActive);
   };
+
+  const { userLogin } = useTypedSelector((state) => state);
+  console.log('userLogin ==>>>', userLogin);
+  const [isLogin, setIsLogin] = useState(false);
 
   const closeBurgerMenu = () => {
     setIsActive(false);
@@ -94,18 +99,25 @@ const SidebarLayout: React.FC<ISidebarLayout> = () => {
               );
             })}
             <li className={styles.menuItem} onClick={closeBurgerMenu}>
-              <Link href={'/user/login'}>
-                <a className={styles.menuLogin}>
-                  <Icon
-                    className={styles.iconSize}
-                    icon="ri:login-circle-line"
-                  />
-                  {/* <Icon
-                    className={styles.iconSize}
-                    icon="ri:account-circle-line"
-                  /> */}
-                </a>
-              </Link>
+              {!isLogin ? (
+                <Link href={'/user/login'}>
+                  <a className={styles.menuLogin}>
+                    <Icon
+                      className={styles.iconSize}
+                      icon="ri:login-circle-line"
+                    />
+                  </a>
+                </Link>
+              ) : (
+                <Link href={'/profile'}>
+                  <a className={styles.menuLogin}>
+                    <Icon
+                      className={styles.iconSize}
+                      icon="ri:account-circle-line"
+                    />
+                  </a>
+                </Link>
+              )}
             </li>
           </ul>
         </div>

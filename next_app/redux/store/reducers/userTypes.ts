@@ -19,12 +19,13 @@ export interface IUserLogin {
 }
 
 export interface IUserLoginState {
-  user: IUserToken;
   isLoading: boolean;
+  accessToken: IUserToken; // for storing the JWT
   error: string;
+  isSuccess: boolean;
 }
 
 export interface IUserToken {
-  access_token: string;
+  access_token: string | null;
   token_type: string;
 }

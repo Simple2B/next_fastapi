@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import IconCross from '../../common/IconCross/IconCross';
 import styles from '../RegisterLogin.module.css';
-import { userApiServices } from '../../../redux/services/UserServices';
+import { useRegistrationUserMutation } from '../../../redux/services/UserServices';
 import { IReqInfoUser } from 'redux/store/reducers/userTypes';
 import { socialBtns } from '../socialBtnsData';
 import SvgIcon from 'components/common/SvgIcons/SvgIcons';
@@ -42,7 +42,15 @@ const Register: React.FC<IRegister> = () => {
   };
 
   // RTK Query
-  const [regUser, result] = userApiServices.useRegistrationUserMutation();
+  const [
+    regUser,
+    {
+      data: registrationData,
+      isLoading: isRegistrationLoading,
+      isSuccess: isRegistrationSuccess,
+      isError: isRegistrationError,
+    },
+  ] = useRegistrationUserMutation();
 
   const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -50,9 +58,6 @@ const Register: React.FC<IRegister> = () => {
   // const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [isLoading, setLoading] = useState<boolean | null>(null);
-  const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
-  const [isError, setIsError] = useState<boolean | null>(null);
   const [userEmailInfo, setUserEmailInfo] = useState('');
 
   const registrationUser = async () => {
@@ -75,9 +80,6 @@ const Register: React.FC<IRegister> = () => {
     };
 
     regUser(reqUserInfoData);
-    setLoading(result.isLoading);
-    setIsSuccess(result.isSuccess);
-    setIsError(result.isError);
   };
 
   const checkEmail = async (value: string) => {
@@ -93,12 +95,16 @@ const Register: React.FC<IRegister> = () => {
     }
   };
 
-  if (isSuccess) push('/user/login');
+  if (isRegistrationSuccess) push('/user/login');
+
+  console.log('registrationData => ', registrationData);
+  console.log('isRegistrationLoading => ', isRegistrationLoading);
+  console.log('isRegistrationError => ', isRegistrationError);
 
   return (
     <div className={styles.container}>
-      {isLoading && <Loader />}
-      {isError && <ErrorInfo infoError={'Error ...'} />}
+      {isRegistrationLoading && <Loader />}
+      {isRegistrationError && <ErrorInfo infoError={'Error ...'} />}
       <div className={styles.asmForm}>
         <IconCross />
         <div className={styles.asmForm__header}>

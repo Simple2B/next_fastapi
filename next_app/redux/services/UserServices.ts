@@ -7,6 +7,13 @@ import {
 
 const URI = process.env.NEXT_PUBLIC_API_URL;
 
+const formatRequestBody = (username: string, password: string) => {
+  const formData = new FormData();
+  formData.append('username', username);
+  formData.append('password', password);
+  return formData;
+};
+
 export const userApiServices = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
@@ -21,11 +28,14 @@ export const userApiServices = createApi({
       }),
     }),
     loginUser: build.mutation<IUserToken, IUserLogin>({
-      query: (body) => ({
+      query: (body: { username: string; password: string }) => ({
         url: '/login',
         method: 'POST',
-        body,
+        body: formatRequestBody(body.username, body.password),
       }),
     }),
   }),
 });
+
+export const { useRegistrationUserMutation, useLoginUserMutation } =
+  userApiServices;

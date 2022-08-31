@@ -1,8 +1,11 @@
 import CustomInput from 'components/common/CustomInput/CustomInput';
+import Loader from 'components/common/Loader/Loader';
 import SvgIcon from 'components/common/SvgIcons/SvgIcons';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { userApiServices } from 'redux/services/UserServices';
+import { useEffect, useState } from 'react';
+import { useActions } from 'redux/hooks/useActions';
+import { useTypedSelector } from 'redux/hooks/useTypedSelector';
+import { useLoginUserMutation } from 'redux/services/UserServices';
 import IconCross from '../../common/IconCross/IconCross';
 import styles from '../RegisterLogin.module.css';
 import { socialBtns } from '../socialBtnsData';
@@ -15,8 +18,19 @@ const Login: React.FC<ILogin> = () => {
   const [password, setPassword] = useState('');
   const [type, setType] = useState('password');
 
-  const [loginUser] = userApiServices.useLoginUserMutation();
-  // console.log(user);
+  const { loginSuccess: userLoginSuccess, error: userLoginError } =
+    useActions();
+
+  const [
+    loginUser,
+    {
+      data: loginData,
+      isLoading: isLoginLoading,
+      isSuccess: isLoginSuccess,
+      isError: isLoginError,
+    },
+  ] = useLoginUserMutation();
+
 
   const toggShowPassword = () => {
     if (type === 'password') {
@@ -32,11 +46,35 @@ const Login: React.FC<ILogin> = () => {
       password: password,
     };
 
-    loginUser(data);
+    if (username && password) {
+      await loginUser(data);
+    } else {
+      // TODO: must add to ui part some string with error
+      console.log('Please fill all input field');
+    }
   };
+
+  useEffect(() => {
+    if (isLoginSuccess && loginData) {
+      userLoginSuccess(loginData);
+      localStorage.setItem('access_token', loginData?.access_token ?? '');
+      push('/profile');
+    }
+    if (isLoginError) {
+      console.log("you can't login");
+
+      // userLoginError('')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoginSuccess, loginData?.access_token]);
+
+  console.log('loginData => ', loginData);
 
   return (
     <div className={styles.container}>
+      {isLoginLoading && <Loader />}
+      {isLoginSuccess && <>Login success</>}
+      {isLoginError && <>Error ... </>}
       <div className={styles.asmForm}>
         <IconCross />
         <div className={styles.asmForm__header}>
