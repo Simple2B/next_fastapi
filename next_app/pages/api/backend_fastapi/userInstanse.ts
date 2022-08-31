@@ -8,13 +8,13 @@ const formatRequestBody = (username: string, password: string) => {
   return formData;
 };
 
-const formatRequestBodyApiKey = (password: string, api_key: string) => {
-  const params = {
-    password: password,
-    api_key: api_key,
-  };
-  return params;
-};
+// const formatRequestBodyApiKey = (password: string, api_key: string) => {
+//   const params = {
+//     password: password,
+//     api_key: api_key,
+//   };
+//   return params;
+// };
 
 export const userApi = {
   registrationUser: async (data: IReqInfoUser): Promise<IReqInfoUser> => {

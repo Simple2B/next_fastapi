@@ -15,7 +15,7 @@ const Login: React.FC<ILogin> = () => {
   const [password, setPassword] = useState('');
   const [type, setType] = useState('password');
 
-  const [loginUser, result] = userApiServices.useLoginUserMutation();
+  const [loginUser] = userApiServices.useLoginUserMutation();
   // console.log(user);
 
   const toggShowPassword = () => {
