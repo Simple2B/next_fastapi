@@ -16,7 +16,8 @@
     "sqlalchemy",
     "starlette",
     "uvicorn",
-    "viewonly"
+    "viewonly",
+    "virtualenvs"
   ],
   "python.testing.unittestEnabled": false,
   "python.testing.nosetestsEnabled": false,
