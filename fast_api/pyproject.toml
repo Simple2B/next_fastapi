@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "FastAPI Server"
+name = "API"
 version = "0.1.0"
 description = ""
 authors = ["Nikolay <nchernov@gmail.com>"]
@@ -23,9 +23,10 @@ psycopg2-binary = "^2.9.3"
 alembic = "^1.7.7"
 invoke = "^1.7.1"
 ipython = "^8.3.0"
-Jinja2 = "3.0.0"
 aiofiles = "^0.8.0"
 aiohttp-jinja2 = "^1.5"
+Jinja2 = "^3.1.2"
+pytest-asyncio = "^0.19.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"

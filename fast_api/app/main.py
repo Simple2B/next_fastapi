@@ -1,3 +1,9 @@
+import jinja2
+
+# patch https://jinja.palletsprojects.com/en/3.0.x/changes/
+# pass_context replaces contextfunction and contextfilter.
+jinja2.contextfunction = jinja2.pass_context
+# flake8: noqa F402
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -5,6 +11,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from app.router import user, auth
 from .config import settings
+
 
 app = FastAPI(
     title=settings.SERVER_NAME,
@@ -29,7 +36,7 @@ app.add_middleware(
 
 
 @app.get("/", response_class=HTMLResponse)
-def root(request: Request):
+async def root(request: Request):
     SAMPLE_ENV_VAR = settings.SAMPLE_ENV_VAR
     # return {"ENV": SAMPLE_ENV_VAR}
     # app.url_path_for

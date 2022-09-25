@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
+
 def test_main_page(client: TestClient):
     res = client.get('/')
     assert res
